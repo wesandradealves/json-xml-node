@@ -10,7 +10,7 @@ http.createServer(function (request, response) {  
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     response.setHeader('Access-Control-Allow-Credentials', true); 
     response.setHeader("X-Download-Options", "noopen");
-    
+
     if (request.url == "/") {
         let body = '';
         let file = '';
@@ -48,13 +48,12 @@ http.createServer(function (request, response) {  
             file = XLSX.write(workBook, { type: 'base64' })
 
             // body += chunk.toString(); 
-
             return true;            
         });
 
         request.on('end', () => {
-            response.end(JSON.stringify({file: file}));
+            response.end(JSON.stringify({ file: file }));
         });     
     }
-}).listen(8081, 'localhost')  
+}).listen(8081)  
 

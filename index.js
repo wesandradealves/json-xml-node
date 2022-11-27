@@ -46,14 +46,15 @@ http.createServer(function (request, response) {  
             // XLSX.writeFile(workBook, path.resolve(`./${filename}.xlsx`));
             
             file = XLSX.write(workBook, { type: 'base64' })
-
-            // body += chunk.toString(); 
+            // body += chunk.toString();    
             return true;            
         });
 
         request.on('end', () => {
+            console.log(process.env.PORT);
+
             response.end(JSON.stringify({ file: file }));
         });     
     }
-}).listen(8081)  
+}).listen(process.env.PORT ? process.env.PORT : 8081)  
 

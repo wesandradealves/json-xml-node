@@ -7,6 +7,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 
+app.use(express.static("public"))
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -20,6 +21,10 @@ app.use((req, res, next) => {
     res.set("X-Download-Options", "noopen")
     next();
 });
+
+app.get("/", function (req, res) {
+  res.send("<h1>Hello World!</h1>")
+})
 
 app.post('/', (req, res) => {
     // res.status(200).send(JSON.stringify(req.body));
@@ -69,9 +74,8 @@ app.post('/', (req, res) => {
     res.status(200).send(JSON.stringify({ file: file }));
 })
 
-app.listen(port, host, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(process.env.PORT || 8081, 
+	() => console.log("Server is running..."));
 
 // var server = http.createServer(function(req, res){    
 

@@ -43,7 +43,7 @@ http.createServer(function (request, response) {  
 
             const workSheet = XLSX.utils.aoa_to_sheet(workSheetData);
             XLSX.utils.book_append_sheet(workBook, workSheet, filename);
-            XLSX.writeFile(workBook, path.resolve(`./${filename}.xlsx`));
+            // XLSX.writeFile(workBook, path.resolve(`./${filename}.xlsx`));
             
             file = XLSX.write(workBook, { type: 'base64' })
 

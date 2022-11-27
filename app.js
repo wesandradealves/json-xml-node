@@ -74,8 +74,9 @@ app.post('/', (req, res) => {
     res.status(200).send(JSON.stringify({ file: file }));
 })
 
-app.listen(process.env.PORT || 8081, 
-	() => console.log("Server is running..."));
+app.listen(port, () => {
+    console.log(`Our app is running on port ${ port }`);
+});
 
 // var server = http.createServer(function(req, res){    
 

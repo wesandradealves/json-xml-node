@@ -11,7 +11,7 @@ http.createServer(function (request, response) {  
     response.setHeader('Access-Control-Allow-Credentials', true); 
     response.setHeader("X-Download-Options", "noopen");
 
-    if (request.url == "/export") {
+    if (request.url == "/") {
         let body = '';
         let file = '';
         
@@ -55,5 +55,5 @@ http.createServer(function (request, response) {  
             response.end(JSON.stringify({ file: file }));
         });     
     }
-}).listen(8081, 'json-xlxs.herokuapp.com')  
+}).listen(8081)  
 

@@ -52,8 +52,6 @@ http.createServer(function (request, response) {  
         });
 
         request.on('end', () => {
-            console.log(process.env.PORT);
-
             response.end(JSON.stringify({ file: file }));
         });     
     }

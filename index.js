@@ -3,6 +3,7 @@ const exportFromJSON = require('export-from-json')  
 const XLSX = require('xlsx');
 const path = require('path');
 const { raw } = require('body-parser');
+const PORT = process.env.PORT || 8081;
 
 http.createServer(function (request, response) {  
     response.setHeader('Access-Control-Allow-Origin', '*');
@@ -56,5 +57,5 @@ http.createServer(function (request, response) {  
             response.end(JSON.stringify({ file: file }));
         });     
     }
-}).listen(process.env.PORT ? process.env.PORT : 8081)  
+}).listen(PORT)  
 

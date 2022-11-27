@@ -1,0 +1,112 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0", 
+    "title": "João Pinheiro Api",
+    "description": "Api pra uso com a aplicação de Indicadores (https://jp-homologa.cityconnect.com.br/indicadores)",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "json-xlxs.herokuapp.com",
+  "basePath": "/",
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "Exportar JSON para xlsx",
+        "parameters": [
+          {
+            "name": "indicador",
+            "in": "body",
+            "description": "JSON que queremos exportar",
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        ],        
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Response": {
+      "properties": {
+        "file": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },    
+    "Post": {
+      "properties": {
+        "municipio": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+                "dado_alimentos_areamedia": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_pastagens": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_area": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_peqprod": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_extensaorural": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_fundorotativo": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_mecagricola": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_sementesmudas": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_calcfert": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_apoiocomercio": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "dado_alimentos_orgaoapoio": {
+                    "type": "string",
+                    "uniqueItems": true
+                }                                                                                                                                                                              
+            }
+          }
+        }
+      }
+    }
+  }  
+}

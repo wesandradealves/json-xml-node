@@ -6,6 +6,8 @@ const host = process.env.HOST || 'localhost'
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 app.use(express.static("public"))
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -22,9 +24,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", function (req, res) {
-  res.send("<h1>Hello World!</h1>")
-})
+
+// app.get("/", function (req, res) {
+//   res.send("<h1>Hello World!</h1>")
+// })
 
 app.post('/', (req, res) => {
     // res.status(200).send(JSON.stringify(req.body));
@@ -73,6 +76,8 @@ app.post('/', (req, res) => {
     // }  
     res.status(200).send(JSON.stringify({ file: file }));
 })
+
+app.use('/',swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.listen(port, () => {
     console.log(`Our app is running on port ${ port }`);

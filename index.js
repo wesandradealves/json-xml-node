@@ -11,7 +11,7 @@ http.createServer(function (request, response) {  
     response.setHeader('Access-Control-Allow-Credentials', true); 
     response.setHeader("X-Download-Options", "noopen");
 
-    if (request.url == "/") {
+    if (request.url == "/export") {
         let body = '';
         let file = '';
         
@@ -43,7 +43,7 @@ http.createServer(function (request, response) {  
 
             const workSheet = XLSX.utils.aoa_to_sheet(workSheetData);
             XLSX.utils.book_append_sheet(workBook, workSheet, filename);
-            XLSX.writeFile(workBook, path.resolve(`./${filename}.xlsx`));
+            // XLSX.writeFile(workBook, path.resolve(`./${filename}.xlsx`));
             
             file = XLSX.write(workBook, { type: 'base64' })
 
@@ -55,5 +55,5 @@ http.createServer(function (request, response) {  
             response.end(JSON.stringify({ file: file }));
         });     
     }
-}).listen(8081)  
+}).listen(8081, 'json-xlxs.herokuapp.com')  
 
